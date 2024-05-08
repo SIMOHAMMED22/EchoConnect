@@ -14,3 +14,5 @@ php artisan make:model MessageAttachememt -m
 
 php artisan make:factory GroupFactory
 php artisan make:factory MessageFactory
+
+php artisan migrate:fresh --seed
