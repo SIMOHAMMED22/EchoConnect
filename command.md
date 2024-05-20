@@ -16,3 +16,11 @@ php artisan make:factory GroupFactory
 php artisan make:factory MessageFactory
 
 php artisan migrate:fresh --seed
+
+php artisan make:controller HomeController
+
+npm run dev
+
+php artisan reverb:start --debug
+
+php artisan make:resource UserResource
