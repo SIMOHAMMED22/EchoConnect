@@ -24,3 +24,11 @@ npm run dev
 php artisan reverb:start --debug
 
 php artisan make:resource UserResource
+
+php artisan make:controller MessageController
+php artisan make:request StoreMessageRequest
+php artisan make:resource MessageResource
+php artisan make:event SocketMessage
+
+php artisan make:resource MessageAttachmentResource
+
