@@ -32,3 +32,4 @@ php artisan make:event SocketMessage
 
 php artisan make:resource MessageAttachmentResource
 
+php artisan make:observer MessageObserver
