@@ -15,6 +15,7 @@ class MessageAttachememt extends Model
         "path",
         "mime",
         "size",
+        "attachments"
     ];
 
     
