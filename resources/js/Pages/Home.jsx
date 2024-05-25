@@ -1,4 +1,5 @@
 import ConversationHeader from "@/Components/App/ConversationHeader";
+import MessageInput from "@/Components/App/MessageInput";
 import MessageItem from "@/Components/App/MessageItem";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ChatLayout from "@/Layouts/ChatLayout";
@@ -38,7 +39,10 @@ function Home({ selectedConversation, messages }) {
                     <ConversationHeader
                         selectedConversation={selectedConversation}
                     />
-                    <div className="flex-1 overflow-y-auto p-5">
+                    <div
+                        ref={messagesCtrRef}
+                        className="flex-1 overflow-y-auto p-5"
+                    >
                         {localMessages.length === 0 && (
                             <div className="flex justify-center items-center h-full">
                                 <div className="text-lg text-slate-200">
@@ -57,7 +61,7 @@ function Home({ selectedConversation, messages }) {
                             </div>
                         )}
                     </div>
-                    {/* <MessageInput conversation={selectedConversation} /> */}
+                    <MessageInput conversation={selectedConversation} />
                 </>
             )}
         </>
