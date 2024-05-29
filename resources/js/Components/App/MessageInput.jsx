@@ -1,11 +1,53 @@
-import { FaceSmileIcon, HandThumbUpIcon, PaperAirplaneIcon, PaperClipIcon, PhotoIcon } from "@heroicons/react/24/solid";
+import {
+    FaceSmileIcon,
+    HandThumbUpIcon,
+    PaperAirplaneIcon,
+    PaperClipIcon,
+    PhotoIcon,
+} from "@heroicons/react/24/solid";
 import NewMessageInput from "./NewMessageInput";
 import { useState } from "react";
 
-const MessageInput = ({ message, attachmentClick }) => {
+const MessageInput = ({ conversation = null }) => {
     const [newMessage, setNewMessage] = useState("");
     const [inputErrorMessage, setInputErrorMessage] = useState("");
     const [messageSending, setMessageSending] = useState(false);
+
+    const onSendClick = () => {
+        if (newMessage.trim() === "") {
+            setInputErrorMessage(
+                "Please provide a message or upload attachment"
+            );
+            setTimeout(() => {
+                setInputErrorMessage("");
+            }, 3000);
+            return;
+        }
+        const formData = new FormData();
+        formData.append("message", newMessage);
+        if (conversation.is_user)
+        {
+            formData.append("receiver_id", conversation.id);
+        } else if (conversation.is_group) {
+            formData.append("group_id", conversation.id);
+        }
+        setMessageSending(true);
+        axios.post(route("message.store"), formData, {
+            onUploadProgress: (progressEvent) => {
+                const progress = Math.round(
+                    (progressEvent.loaded  / progressEvent.total ) * 100
+                );
+                console.log(progress)
+            }
+        }).then((res) => {
+            setNewMessage("");
+            setMessageSending(false);
+        }).catch((err) => {
+            setMessageSending(false);
+
+        })
+    };
+
     return (
         <div className="flex flex-wrap items-start border-t border-slate-700 py-3">
             <div className="order-2 flex-1 xs:flex-none xs:order-1 p-2">
@@ -30,12 +72,16 @@ const MessageInput = ({ message, attachmentClick }) => {
             <div className="order-1 px-3 xs:p-0 min-w-[220px] basis-full xs:basis-0 xs:order-2 flex-1 relative">
                 <div className="flex">
                     <NewMessageInput
+                        onSend={onSendClick}
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                     />
-                    <button className="btn btn-info rounded-l-none">
+                    <button
+                        onClick={onSendClick}
+                        className="btn btn-info rounded-l-none"
+                    >
                         {messageSending && (
-                        <span className="loading loading-spinner loading-xs"></span>
+                            <span className="loading loading-spinner loading-xs"></span>
                         )}
                         <PaperAirplaneIcon className="w-6" />
                         <span className="hidden sm:inline">Send</span>
@@ -46,10 +92,10 @@ const MessageInput = ({ message, attachmentClick }) => {
                 )}
             </div>
             <div className="order-3 xs:order-3 p-2 flex">
-                <button className="p-1 text-gray-400 hover:text-gray-300" >
+                <button className="p-1 text-gray-400 hover:text-gray-300">
                     <FaceSmileIcon className="w-6 h-6" />
                 </button>
-                <button className="p-1 text-gray-400 hover:text-gray-300" >
+                <button className="p-1 text-gray-400 hover:text-gray-300">
                     <HandThumbUpIcon className="w-6 h-6" />
                 </button>
             </div>
