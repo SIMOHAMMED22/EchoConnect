@@ -1,6 +1,17 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
+/**
+ * Renders a modal component with the given props.
+ *
+ * @param {Object} props - The props for the modal component.
+ * @param {ReactNode} props.children - The content of the modal.
+ * @param {boolean} [props.show=false] - Whether the modal is visible or not.
+ * @param {string} [props.maxWidth='2xl'] - The maximum width of the modal.
+ * @param {boolean} [props.closeable=true] - Whether the modal can be closed or not.
+ * @param {Function} [props.onClose=() => {}] - The callback function when the modal is closed.
+ * @return {JSX.Element} The rendered modal component.
+ */
 export default function Modal({ children, show = false, maxWidth = '2xl', closeable = true, onClose = () => {} }) {
     const close = () => {
         if (closeable) {
