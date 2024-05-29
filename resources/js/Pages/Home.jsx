@@ -33,7 +33,7 @@ function Home({ selectedConversation = null, messages = null }) {
             const scrollTop = messagesCtrRef.current.scrollTop;
             const clientHeight = messagesCtrRef.current.clientHeight;
             const tmpScrollFromBottom = scrollHeight - scrollTop - clientHeight;
-            console.log(scrollHeight, scrollTop, clientHeight);
+            console.log(scrollHeight - scrollTop - clientHeight);
             setScrollFromBottom(tmpScrollFromBottom);
 
             setLocalMessages((prevMessages) => [
@@ -59,6 +59,7 @@ function Home({ selectedConversation = null, messages = null }) {
         ) {
             setLocalMessages((prevMessages) => [...prevMessages, message]);
         }
+        setScrollFromBottom(0)
     };
 
     useEffect(() => {
@@ -105,7 +106,7 @@ function Home({ selectedConversation = null, messages = null }) {
                 observer.observe(loadMoreIntersect.current);
             }, 100);
         }
-
+        console.log("localMessages", scrollFromBottom)
         return () => {
             observer.disconnect();
         };
