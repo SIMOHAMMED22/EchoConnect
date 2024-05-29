@@ -4,6 +4,13 @@ import { Transition } from '@headlessui/react';
 
 const DropDownContext = createContext();
 
+/**
+ * Renders a dropdown component with the provided children.
+ *
+ * @param {Object} props - The properties object.
+ * @param {ReactNode} props.children - The children to render inside the dropdown.
+ * @return {ReactElement} The rendered dropdown component.
+ */
 const Dropdown = ({ children }) => {
     const [open, setOpen] = useState(false);
 
