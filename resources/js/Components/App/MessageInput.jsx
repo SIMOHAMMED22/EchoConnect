@@ -14,6 +14,7 @@ const MessageInput = ({ conversation = null }) => {
     const [messageSending, setMessageSending] = useState(false);
 
     const onSendClick = () => {
+        if (messageSending) return;
         if (newMessage.trim() === "") {
             setInputErrorMessage(
                 "Please provide a message or upload attachment"
@@ -78,6 +79,7 @@ const MessageInput = ({ conversation = null }) => {
                     />
                     <button
                         onClick={onSendClick}
+                        disabled={messageSending}
                         className="btn btn-info rounded-l-none"
                     >
                         {messageSending && (

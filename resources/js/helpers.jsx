@@ -3,7 +3,7 @@ export const formatMessageDateLong = (date) => {
     const inputDate = new Date(date);
 
     if (isToday(inputDate)) {
-        return inputDate.toLocaleDateString([], {
+        return inputDate.toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
         });
@@ -30,7 +30,7 @@ export const formatMessageDateShort = (date) => {
     const inputDate = new Date(date);
 
     if (isToday(inputDate)) {
-        return inputDate.toLocaleDateString([], {
+        return inputDate.toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
         });
