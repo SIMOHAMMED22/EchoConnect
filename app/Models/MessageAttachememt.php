@@ -9,4 +9,12 @@ class MessageAttachememt extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        "message_id",
+        "name",
+        "path",
+        "mime",
+        "size",
+        "attachments"
+    ];
 }
