@@ -11,6 +11,10 @@ import { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import { Popover } from "@headlessui/react";
 import AudioRecorder from "./AudioRecorder";
+import { isAudio, isImage } from "@/helpers";
+import AttachmentPreview from "./AttachmentPreview";
+import CustomAudioPlayer from "./CustomAudioPlayer";
+import { useEventBus } from "@/EventBus";
 
 const MessageInput = ({ conversation = null }) => {
     const [newMessage, setNewMessage] = useState("");
@@ -18,15 +22,17 @@ const MessageInput = ({ conversation = null }) => {
     const [messageSending, setMessageSending] = useState(false);
     const [chosenFiles, setChosenFiles] = useState([]);
     const [uploadProgress, setUploadProgress] = useState(0);
+    const {emit} = useEventBus();
 
     const onFileChange = (e) => {
-        const files = ev.target.files;
+        const files = e.target.files;
         const updatedFiles = [...files].map((file) => {
             return {
                 file: file,
                 url: URL.createObjectURL(file),
             };
         });
+        e.target.value = null;
         setChosenFiles((prevFiles) => [...prevFiles, ...updatedFiles]);
     };
 
@@ -44,8 +50,9 @@ const MessageInput = ({ conversation = null }) => {
     };
 
     const onSendClick = () => {
+        emit('toast.show', "Message sent successfully")
         if (messageSending) return;
-        if (newMessage.trim() === "") {
+        if (newMessage.trim() === "" && chosenFiles.length === 0) {
             setInputErrorMessage(
                 "Please provide a message or upload attachment"
             );

@@ -10,6 +10,7 @@ use App\Models\Group;
 use App\Models\Message;
 use App\Models\MessageAttachememt;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -91,7 +92,7 @@ class MessageController extends Controller
                     'name' => $file->getClientOriginalName(),
                     'mime' => $file->getClientMimeType(),
                     'size' => $file->getSize(),
-                    'path' => $file->store($directory, 'pulic'),
+                    'path' => $file->store($directory, 'public'),
                 ];
                 $attachment = MessageAttachememt::create($model);
                 $attachments[] = $attachment;

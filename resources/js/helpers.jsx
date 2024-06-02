@@ -97,8 +97,8 @@ export const isPreviewable = (attachment) => {
     );
 };
 
-export const formatBytes = (bytes, decimals = 2) => {
-    if (bytes === 0) return "0 Bytes";
+export const formatBytes = (size, decimals = 2) => {
+    if (size === 0) return "0 Bytes";
 
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
