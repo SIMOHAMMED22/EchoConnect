@@ -50,7 +50,6 @@ const MessageInput = ({ conversation = null }) => {
     };
 
     const onSendClick = () => {
-        emit('toast.show', "Message sent successfully")
         if (messageSending) return;
         if (newMessage.trim() === "" && chosenFiles.length === 0) {
             setInputErrorMessage(

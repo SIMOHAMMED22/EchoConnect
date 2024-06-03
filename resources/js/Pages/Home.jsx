@@ -25,7 +25,6 @@ function Home({ selectedConversation = null, messages = null }) {
 
     const { on } = useEventBus();
 
-
     const loadMoreMessage = useCallback(() => {
         if (noMoreMessage) return;
         const firstMessage = localMessages[0];
@@ -65,7 +64,30 @@ function Home({ selectedConversation = null, messages = null }) {
         ) {
             setLocalMessages((prevMessages) => [...prevMessages, message]);
         }
-        setScrollFromBottom(0)
+        setScrollFromBottom(0);
+    };
+
+    const messageDeleted = ({message}) => {
+        if (
+            selectedConversation &&
+            selectedConversation.is_group &&
+            selectedConversation.id == message.group_id
+        ) {
+            setLocalMessages((prevMessages) => {
+                return prevMessages.filter((msg) => msg.id !== message.id);
+            });
+        }
+        if (
+            selectedConversation &&
+            selectedConversation.is_user &&
+            (selectedConversation.id == message.sender_id ||
+                selectedConversation.id == message.receiver_id)
+        ) {
+            setLocalMessages((prevMessages) => {
+                return prevMessages.filter((msg) => msg.id !== message.id);
+            });
+        }
+        setScrollFromBottom(0);
     };
 
     const onAttachmentClick = (attachments, ind) => {
@@ -73,9 +95,9 @@ function Home({ selectedConversation = null, messages = null }) {
             attachments,
             ind,
         });
-        setShowAttachmentPreview(true)
-        console.log("object")
-    }
+        setShowAttachmentPreview(true);
+        console.log("object");
+    };
 
     useEffect(() => {
         setLocalMessages(messages ? messages.data.reverse() : []);
@@ -88,12 +110,14 @@ function Home({ selectedConversation = null, messages = null }) {
                     messagesCtrRef.current.scrollHeight;
         }, 10);
         const offCreated = on("message.created", messageCreated);
+        const offDeleted = on("message.deleted", messageDeleted);
 
-        setScrollFromBottom(0)
+        setScrollFromBottom(0);
         setNoMoreMessages(false);
 
         return () => {
             offCreated();
+            offDeleted();
         };
     }, [selectedConversation]);
 
@@ -121,7 +145,7 @@ function Home({ selectedConversation = null, messages = null }) {
                 observer.observe(loadMoreIntersect.current);
             }, 100);
         }
-        console.log("localMessages", scrollFromBottom)
+        console.log("localMessages", scrollFromBottom);
         return () => {
             observer.disconnect();
         };
@@ -170,7 +194,7 @@ function Home({ selectedConversation = null, messages = null }) {
                 </>
             )}
             {previewAttachment.attachments && (
-                <AttachmentPreviewModal 
+                <AttachmentPreviewModal
                     attachments={previewAttachment.attachments}
                     index={previewAttachment.ind}
                     show={showAttachmentPreview}
