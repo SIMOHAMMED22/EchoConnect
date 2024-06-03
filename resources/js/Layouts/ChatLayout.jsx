@@ -55,9 +55,9 @@ const ChatLayout = ({ children }) => {
 
     const messageDeleted = ({ prevMessage }) => {
         if (!prevMessage) return;
-        
+
         // Find the conversation by prevMessage and updated its last_message_id and date
-        messageCreated(prevMessage)
+        messageCreated(prevMessage);
     };
 
     useEffect(() => {
