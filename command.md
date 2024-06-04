@@ -39,3 +39,5 @@ php artisan storage:link
 php artisan make:controller UserController
 
 php artisan make:middleware AdminUser
+
+php artisan make:middleware ActiveUser
