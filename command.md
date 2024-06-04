@@ -41,3 +41,9 @@ php artisan make:controller UserController
 php artisan make:middleware AdminUser
 
 php artisan make:middleware ActiveUser
+
+php artisan make:mail UserCreated
+php artisan make:mail UserBlockedUnblocked
+php artisan make:mail UserRoleChanged
+
+php artisan vendor:publish --tag=laravel-mail
