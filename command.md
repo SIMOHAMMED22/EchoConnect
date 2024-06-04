@@ -35,3 +35,7 @@ php artisan make:resource MessageAttachmentResource
 php artisan make:observer MessageObserver
 
 php artisan storage:link
+
+php artisan make:controller UserController
+
+php artisan make:middleware AdminUser
