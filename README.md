@@ -48,3 +48,7 @@
 
 ### Development Environment:
 - **IDE:** Visual Studio Code
+
+## Running the Project
+1. **Install PHP Dependencies:**
+    composer install
