@@ -51,4 +51,4 @@
 
 ## Running the Project
 1. **Install PHP Dependencies:**
-    composer install
+    ```bash composer install```
