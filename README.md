@@ -49,6 +49,17 @@
 ### Development Environment:
 - **IDE:** Visual Studio Code
 
+## Dependencies
+
+### Software Versions
+
+- **npm:** v10.5.0
+- **Node.js:** v21.6.0
+- **Composer:** v2.7.6
+- **PHP:** v8.2.12
+- **XAMPP:** v8.2.12-0-VS16-installer
+
+
 ## Running the Project
 1. **Install PHP Dependencies:**
     ```bash
