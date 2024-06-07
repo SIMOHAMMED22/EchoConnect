@@ -1,6 +1,6 @@
 <x-mail::message>
-Hello {{ $user->name }},
-Tour account has been created successfully.
+Hello {{ $user->name }},<br>
+Your account has been created successfully.<br>
 **Here is your login details:** <br>
 Email: {{ $user->email }} <br>
 Password: {{ $password }} <br>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Conversation extends Model
 {
@@ -34,7 +35,8 @@ class Conversation extends Model
     public static function getConversationsForSidebar(User $user)
     {
         $users = User::getUsersExceptUser($user);
-        $groups = Group::getGroupsForUser($user);
+        // $groups = Group::getGroupsForUser($user);
+        $groups = collect([]);
 
         return $users->map(function (User $user) {
             return $user->toConversationArray();
