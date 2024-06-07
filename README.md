@@ -26,3 +26,25 @@
 - Recap: Realtime Messenger provides seamless communication with robust admin controls.
 - Impact: Enhancing productivity, collaboration, and security in communication.
 - Empowering Users: Providing autonomy and customization options for a tailored experience.
+
+## Technology Stack
+
+### Backend:
+- **Framework:** Laravel
+- **Frontend Integration:** React with Inertia
+- **Authentication:** Laravel Breeze
+- **Websockets:** Laravel Reverb
+- **Utility:** UUID for generating unique identifiers
+- **Server Environment:** XAMPP for local server setup
+- **Dependency Management:** Composer for PHP dependencies
+
+### Frontend:
+- **UI Library:** Headless UI for accessible UI components
+- **Icon Library:** Heroicons for a collection of icons
+- **UI Framework:** DaisyUI for tailwindcss components
+- **Emoji Picker:** emoji-picker-react for adding emojis to messages
+- **Markdown Rendering:** react-markdown for rendering Markdown content
+- **Dependency Management:** npm for managing JavaScript packages
+
+### Development Environment:
+- **IDE:** Visual Studio Code
