@@ -70,3 +70,6 @@
     ```bash
     php artisan serve
     ```
+## Team Members
+- [MOHAMMED EL FAQYH](https://github.com/SIMOHAMMED22)
+- [Mouad Abou Othmane](https://github.com/MouadAbouOthmane)
