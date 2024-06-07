@@ -52,4 +52,21 @@
 ## Running the Project
 1. **Install PHP Dependencies:**
     ```bash
-    composer install```
+    composer install
+    ```
+2. **Install JavaScript Dependencies:**
+    ```bash
+    npm install
+    ```
+3. **Compile Assets:**
+    ```bash
+    npm run dev
+    ```
+4. **Start Laravel Reverb WebSocket Server:**
+    ```bash
+    php artisan reverb:start --debug
+    ```
+5. **Run the Application:**
+    ```bash
+    php artisan serve
+    ```
