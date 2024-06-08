@@ -66,7 +66,15 @@
     ```bash
     php artisan reverb:start --debug
     ```
-5. **Run the Application:**
+5. **Run Migrations:**
+    ```bash
+    php artisan migrate
+    ```
+6. **Run Fresh Migrations with Seeding:**
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
+7. **Run the Application:**
     ```bash
     php artisan serve
     ```
